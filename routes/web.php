@@ -12,5 +12,21 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
+})->name('home');
+
+//Route::post('/signup',function () {
+//    dd('signup');
+//});
+
+Route::group(['prefix' => 'user'], function() {
+    Route::get('/signup', 'SignupController@create');
+    Route::post('/signup', 'SignupController@store');
+
+    Route::get('/signin', 'SigninController@create');
+    Route::post('/signin', 'SigninController@store');
+});
+Route::get('/room/acadamic', 'AcadamicController@create')->name('academic');
+Route::get('/shop/shop', function(){
+   return view('shop.shop');
 });
